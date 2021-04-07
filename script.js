@@ -4,41 +4,29 @@ function game() {
   for (let i = 0; i < 5; i++) {
     function computerPlay() {
       let number = Math.floor(Math.random() * 3) + 1;
-      return number === 1 ? 'ROCK'
-        : number === 2 ? 'PAPER'
-          : 'SCISSORS';
+      return number === 1 ? 'Rock'
+        : number === 2 ? 'Paper'
+          : 'Scissors';
     }
     function playRound(playerSelection, computerSelection) {
-      if (playerSelection.toUpperCase() === 'ROCK'
-        && computerSelection === 'PAPER') {
+      if (playerSelection === 'Rock' && computerSelection === 'Paper'
+        || playerSelection === 'Scissors' && computerSelection === 'Rock'
+        || playerSelection === 'Paper' && computerSelection === 'Scissors') {
         computer++;
-        console.log("You Lose! Paper beats Rock");
-      } else if (playerSelection.toUpperCase() === 'PAPER'
-        && computerSelection === 'ROCK') {
+        console.log(`You Lose! ${computerSelection} beats ${playerSelection}`);
+      } else if (playerSelection === 'Paper' && computerSelection === 'Rock'
+        || playerSelection === 'Rock' && computerSelection === 'Scissors'
+        || playerSelection === 'Scissors' && computerSelection === 'Paper') {
         player++;
-        console.log("You Win! Paper beats Rock");
-      } else if (playerSelection.toUpperCase() === 'SCISSORS'
-        && computerSelection === 'ROCK') {
-        computer++;
-        console.log("You Lose! Rock beats Scissors");
-      } else if (playerSelection.toUpperCase() === 'ROCK'
-        && computerSelection === 'SCISSORS') {
-        player++;
-        console.log("You Win! Rock beats Scissors");
-      } else if (playerSelection.toUpperCase() === 'PAPER'
-        && computerSelection === 'SCISSORS') {
-        computer++;
-        console.log("You Lose! Scissors beats Paper");
-      } else if (playerSelection.toUpperCase() === 'SCISSORS'
-        && computerSelection === 'PAPER') {
-        player++;
-        console.log("You Win! Scissors beats Paper");
+        console.log(`You Win! ${playerSelection} beats ${computerSelection}`);
       } else {
         console.log("Draw!");
       }
       console.log(`Player: ${player}, Computer: ${computer}`);
     }
-    const playerSelection = prompt("What do you use?");
+    let playerSelection = prompt("What do you use?");
+    playerSelection = playerSelection.charAt(0).toUpperCase()
+      + playerSelection.slice(1).toLowerCase();
     const computerSelection = computerPlay();
     playRound(playerSelection, computerSelection);
   }
