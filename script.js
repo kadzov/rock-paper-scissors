@@ -6,25 +6,26 @@ function computerPlay() {
 }
 let player = 0;
 let computer = 0;
-let i = 0;
 function playRound(playerSelection, computerSelection) {
-  if (i < 5) {
-    ++i;
+  if (player < 5 && computer < 5) {
     if (playerSelection === 'Rock' && computerSelection === 'Paper'
       || playerSelection === 'Scissors' && computerSelection === 'Rock'
       || playerSelection === 'Paper' && computerSelection === 'Scissors') {
-      res.textContent = `Round ${i}\nYou Lose! ${computerSelection} beats ${playerSelection}\nPlayer: ${player}, Computer: ${++computer}`;
+      res.textContent = `You Lose! ${computerSelection} beats ${playerSelection}\nPlayer: ${player}, Computer: ${++computer}`;
     } else if (playerSelection === 'Paper' && computerSelection === 'Rock'
       || playerSelection === 'Rock' && computerSelection === 'Scissors'
       || playerSelection === 'Scissors' && computerSelection === 'Paper') {
-      res.textContent = `Round ${i}\nYou Win! ${playerSelection} beats ${computerSelection}\nPlayer: ${++player}, Computer: ${computer}`;
+      res.textContent = `You Win! ${playerSelection} beats ${computerSelection}\nPlayer: ${++player}, Computer: ${computer}`;
     } else {
-      res.textContent = `Round ${i}\nDraw!\nPlayer: ${++player}, Computer: ${++computer}`;
+      res.textContent = `Draw!\nPlayer: ${++player}, Computer: ${++computer}`;
     }
-  } else {
-    res.textContent = player > computer ? 'You Win!'
-      : player < computer ? 'You Lose!'
-        : 'Draw!';
+  }
+  if (player === 5 || computer === 5) {
+    res.textContent += player > computer ? '\nYou Win!'
+      : player < computer ? '\nYou Lose!'
+        : '\nDraw!';
+    player = 6;
+    computer = 6;
   }
 }
 
