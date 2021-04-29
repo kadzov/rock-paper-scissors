@@ -8,16 +8,14 @@ let player = 0;
 let computer = 0;
 function playRound(playerSelection, computerSelection) {
   if (player < 5 && computer < 5) {
-    if (playerSelection === 'Rock' && computerSelection === 'Paper'
-      || playerSelection === 'Scissors' && computerSelection === 'Rock'
-      || playerSelection === 'Paper' && computerSelection === 'Scissors') {
-      res.textContent = `You Lose! ${computerSelection} beats ${playerSelection}\nPlayer: ${player}, Computer: ${++computer}`;
+    if (playerSelection === computerSelection) {
+      res.textContent = `Draw!\nPlayer: ${++player}, Computer: ${++computer}`;
     } else if (playerSelection === 'Paper' && computerSelection === 'Rock'
       || playerSelection === 'Rock' && computerSelection === 'Scissors'
       || playerSelection === 'Scissors' && computerSelection === 'Paper') {
       res.textContent = `You Win! ${playerSelection} beats ${computerSelection}\nPlayer: ${++player}, Computer: ${computer}`;
     } else {
-      res.textContent = `Draw!\nPlayer: ${++player}, Computer: ${++computer}`;
+      res.textContent = `You Lose! ${computerSelection} beats ${playerSelection}\nPlayer: ${player}, Computer: ${++computer}`;
     }
   }
   if (player === 5 || computer === 5) {
